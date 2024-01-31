@@ -2,6 +2,7 @@ import psutil
 import time
 from email_reporter import EmailReporter
 import os
+from datetime import datetime
 
 env = os.environ.get("ENV")
 receivers = os.environ.get("RECEIVERS").split(",")
@@ -35,5 +36,7 @@ def check_system_usage():
 
 if __name__ == "__main__":
     while True:
+        time_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(f"[INFO] 开始检查系统资源使用情况 --- {time_str}")
         check_system_usage()
         time.sleep(60)  # 每隔20秒检查一次
